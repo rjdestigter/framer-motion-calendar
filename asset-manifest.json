@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/framer-motion-calendar/static/css/main.424c7108.css",
+    "main.js": "/framer-motion-calendar/static/js/main.5efba8ba.js",
+    "static/js/787.abdfe414.chunk.js": "/framer-motion-calendar/static/js/787.abdfe414.chunk.js",
+    "index.html": "/framer-motion-calendar/index.html",
+    "main.424c7108.css.map": "/framer-motion-calendar/static/css/main.424c7108.css.map",
+    "main.5efba8ba.js.map": "/framer-motion-calendar/static/js/main.5efba8ba.js.map",
+    "787.abdfe414.chunk.js.map": "/framer-motion-calendar/static/js/787.abdfe414.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.424c7108.css",
+    "static/js/main.5efba8ba.js"
+  ]
+}
