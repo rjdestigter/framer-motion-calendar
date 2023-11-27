@@ -28,6 +28,14 @@ const randomTitles = [
   "Building",
 ];
 
+const team = [
+  { name: "John", color: "red" },
+  { name: "Jane", color: "blue" },
+  { name: "Joe", color: "green" },
+  { name: "Jack", color: "orange" },
+];
+
+
 function getRandomTitle() {
   return randomTitles[Math.floor(Math.random() * randomTitles.length)];
 }
@@ -48,6 +56,7 @@ function randomEvent() {
     end,
     title: getRandomTitle(),
     color: randomColor(),
+    assignedTo: team[Math.floor(Math.random() * team.length)],
   };
 }
 
@@ -83,12 +92,6 @@ export default function App() {
   );
 }
 
-const team = [
-  { name: "John", color: "red" },
-  { name: "Jane", color: "blue" },
-  { name: "Joe", color: "green" },
-  { name: "Jack", color: "orange" },
-];
 
 type PropsGrid = {
   startDate: Date;
@@ -108,6 +111,41 @@ function Grid({ view, startDate, onSelectDate }: PropsGrid) {
         return (
           <div className={classNames.resource}>
             <div>{member.name}</div>
+
+            {events
+              .filter(({ start, assignedTo }) => isSameDay(start, date) && member.name === assignedTo.name)
+              .map((event) => {
+                const duration = event.end.getTime() - event.start.getTime();
+                const hours = duration / 1000 / 60 / 60;
+                const height = hours * 100;
+                const top =
+                  ((event.start.getTime() - date.getTime()) / 1000 / 60 / 60) *
+                  100;
+                return (
+                  <motion.div
+                    layoutId={"" + event.id}
+                    layout
+                    animate={{ opacity: [0, 1] }}
+                    key={event.id}
+                    className={classNames.event}
+                    style={{
+                      backgroundColor: event.color,
+                      color: getTextColor(event.color),
+                      position: isMonthView ? "relative" : "absolute",
+                      top: isMonthView ? 0 : top,
+                      height: isMonthView ? "auto" : height,
+                    }}
+                  >
+                    <motion.div layout>
+                      <div>
+                        <div>{event.title}</div>
+                      </div>
+                    </motion.div>
+                  </motion.div>
+                );
+              })}
+
+            {/*             
             {member.name === "John" && (
               <motion.div
                 layoutId="event"
@@ -127,7 +165,7 @@ function Grid({ view, startDate, onSelectDate }: PropsGrid) {
                   </div>
                 </motion.div>
               </motion.div>
-            )}
+            )} */}
           </div>
         );
       });
