@@ -1,0 +1,19 @@
+
+
+[role="gridcell"]:hover {
+    opacity: 0.8;
+}
+
+[role="grid"] {
+    border: 1px solid black;
+    width: 100%;
+    box-sizing: border-box;
+    height: 500px;
+    display: grid;
+    // gap: 1px;
+    padding: 1px;
+}
+
+body {
+    overflow: scroll;
+}
